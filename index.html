@@ -117,7 +117,7 @@
             margin-top: 15px;
         }
 
-        .gallery img {
+        .gallery img:not(.lightbox img) {
             width: 100%;
             max-width: 150px;
             max-height: 150px;
@@ -127,7 +127,7 @@
             cursor: pointer;
         }
 
-        .gallery img:hover {
+        .gallery img:not(.lightbox img):hover {
             transform: scale(1.05);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
@@ -158,7 +158,7 @@
         .lightbox img {
             max-width: 1600px;
             max-height: 1200px;
-            object-fit: contain; /* Ensure full image is visible */
+            object-fit: contain;
             border-radius: 5px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
         }
@@ -172,6 +172,7 @@
             cursor: pointer;
             text-decoration: none;
             font-weight: bold;
+            pointer-events: auto;
         }
 
         .lightbox-close:hover {
@@ -250,7 +251,7 @@
                 grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
             }
 
-            .gallery img {
+            .gallery img:not(.lightbox img) {
                 max-width: 100px;
                 max-height: 100px;
             }
@@ -303,19 +304,19 @@
                     <label for="rocket1"><img src="images/all_rockets.png" alt="UQ Space 1"></label>
                     <div class="lightbox">
                         <label for="rocket1" class="lightbox-close">✕</label>
-                        <label for="rocket1"><img src="images/all_rockets.png" alt="UQ Space 1"></label>
+                        <img src="images/all_rockets.png" alt="UQ Space 1">
                     </div>
                     <input type="checkbox" id="rocket2">
                     <label for="rocket2"><img src="images/rocket_launch.png" alt="UQ Space 2"></label>
                     <div class="lightbox">
                         <label for="rocket2" class="lightbox-close">✕</label>
-                        <label for="rocket2"><img src="images/rocket_launch.png" alt="UQ Space 2"></label>
+                        <img src="images/rocket_launch.png" alt="UQ Space 2">
                     </div>
                     <input type="checkbox" id="rocket3">
                     <label for="rocket3"><img src="images/hazmat.PNG" alt="UQ Space 3"></label>
                     <div class="lightbox">
                         <label for="rocket3" class="lightbox-close">✕</label>
-                        <label for="rocket3"><img src="images/hazmat.PNG" alt="UQ Space 3"></label>
+                        <img src="images/hazmat.PNG" alt="UQ Space 3">
                     </div>
                 </div>
                 <a href="#" target="_blank">View Project Details</a>
@@ -328,19 +329,19 @@
                     <label for="composite1"><img src="images/nosecone_mould.png" alt="UQ Space 1"></label>
                     <div class="lightbox">
                         <label for="composite1" class="lightbox-close">✕</label>
-                        <label for="composite1"><img src="images/nosecone_mould.png" alt="UQ Space 1"></label>
+                        <img src="images/nosecone_mould.png" alt="UQ Space 1">
                     </div>
                     <input type="checkbox" id="composite2">
                     <label for="composite2"><img src="images/nosecone_fincan.png" alt="UQ Space 2"></label>
                     <div class="lightbox">
                         <label for="composite2" class="lightbox-close">✕</label>
-                        <label for="composite2"><img src="images/nosecone_fincan.png" alt="UQ Space 2"></label>
+                        <img src="images/nosecone_fincan.png" alt="UQ Space 2">
                     </div>
                     <input type="checkbox" id="composite3">
                     <label for="composite3"><img src="images/vac_bag.png" alt="UQ Space 3"></label>
                     <div class="lightbox">
                         <label for="composite3" class="lightbox-close">✕</label>
-                        <label for="composite3"><img src="images/vac_bag.png" alt="UQ Space 3"></label>
+                        <img src="images/vac_bag.png" alt="UQ Space 3">
                     </div>
                 </div>
                 <a href="#" target="_blank">View Project Details</a>
@@ -353,19 +354,19 @@
                     <label for="railway1"><img src="images/office.png" alt="Railway Signalling 1"></label>
                     <div class="lightbox">
                         <label for="railway1" class="lightbox-close">✕</label>
-                        <label for="railway1"><img src="images/office.png" alt="Railway Signalling 1"></label>
+                        <img src="images/office.png" alt="Railway Signalling 1">
                     </div>
                     <input type="checkbox" id="railway2">
                     <label for="railway2"><img src="images/tracks.png" alt="Railway Signalling 2"></label>
                     <div class="lightbox">
                         <label for="railway2" class="lightbox-close">✕</label>
-                        <label for="railway2"><img src="images/tracks.png" alt="Railway Signalling 2"></label>
+                        <img src="images/tracks.png" alt="Railway Signalling 2">
                     </div>
                     <input type="checkbox" id="railway3">
                     <label for="railway3"><img src="images/handsketch.png" alt="Railway Signalling 3"></label>
                     <div class="lightbox">
                         <label for="railway3" class="lightbox-close">✕</label>
-                        <label for="railway3"><img src="images/handsketch.png" alt="Railway Signalling 3"></label>
+                        <img src="images/handsketch.png" alt="Railway Signalling 3">
                     </div>
                 </div>
                 <a href="#" target="_blank">View Project Details</a>
@@ -378,19 +379,19 @@
                     <label for="metal1"><img src="images/tractor_coloured.png" alt="Metal Works 1"></label>
                     <div class="lightbox">
                         <label for="metal1" class="lightbox-close">✕</label>
-                        <label for="metal1"><img src="images/tractor_coloured.png" alt="Metal Works 1"></label>
+                        <img src="images/tractor_coloured.png" alt="Metal Works 1">
                     </div>
                     <input type="checkbox" id="metal2">
                     <label for="metal2"><img src="images/gearbox.png" alt="Metal Works 2"></label>
                     <div class="lightbox">
                         <label for="metal2" class="lightbox-close">✕</label>
-                        <label for="metal2"><img src="images/gearbox.png" alt="Metal Works 2"></label>
+                        <img src="images/gearbox.png" alt="Metal Works 2">
                     </div>
                     <input type="checkbox" id="metal3">
                     <label for="metal3"><img src="images/bearing_housing.png" alt="Metal Works 3"></label>
                     <div class="lightbox">
                         <label for="metal3" class="lightbox-close">✕</label>
-                        <label for="metal3"><img src="images/bearing_housing.png" alt="Metal Works 3"></label>
+                        <img src="images/bearing_housing.png" alt="Metal Works 3">
                     </div>
                 </div>
                 <a href="#" target="_blank">View Project Details</a>
