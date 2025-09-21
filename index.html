@@ -119,26 +119,73 @@
 
         .gallery img {
             width: 100%;
-            max-width: 150px; /* Constrain maximum width */
-            max-height: 150px; /* Constrain maximum height */
-            object-fit: cover; /* Ensure images fit within bounds without distortion */
+            max-width: 150px;
+            max-height: 150px;
+            object-fit: cover;
             border-radius: 5px;
             transition: transform 0.3s ease;
             cursor: pointer;
         }
 
         .gallery img:hover {
-            transform: scale(1.05); /* Reduced scale for constrained images */
+            transform: scale(1.05);
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Lightbox styles */
+        .gallery input[type="checkbox"] {
+            display: none;
+        }
+
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .gallery input[type="checkbox"]:checked ~ .lightbox {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: 80vw;
+            max-height: 80vh;
+            border-radius: 5px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
         }
 
         .cv-embed {
             width: 100%;
-            max-width: 600px;
-            height: 400px;
+            max-width: 800px;
+            height: 600px;
             margin: 20px auto;
             border: 1px solid #ccc;
             border-radius: 5px;
+            display: block;
+            overflow: auto;
+        }
+
+        .cv-button {
+            display: inline-block;
+            padding: 10px 20px;
+            background: #3e92cc;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin: 10px 0;
+            transition: background 0.3s ease;
+        }
+
+        .cv-button:hover {
+            background: #2c6b9b;
         }
 
         #contact {
@@ -181,6 +228,24 @@
             .project-grid {
                 grid-template-columns: 1fr;
             }
+
+            .gallery {
+                grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+            }
+
+            .gallery img {
+                max-width: 100px;
+                max-height: 100px;
+            }
+
+            .cv-embed {
+                height: 400px;
+            }
+
+            .lightbox img {
+                max-width: 90vw;
+                max-height: 90vh;
+            }
         }
     </style>
 </head>
@@ -200,6 +265,7 @@
     <section id="about">
         <h2>About Me</h2>
         <p>Hi, I'm Nathan Rawiri, an aerospace and mechanical engineer with a passion for solving complex problems through innovative design and software development. With experience in aerospace systems, mechanical design, and software engineering, I blend technical expertise with creative solutions to build impactful projects.</p>
+        <a href="docs/Nathan_Rawiri.pdf" target="_blank" class="cv-button">View My CV</a>
         <iframe src="docs/Nathan_Rawiri.pdf" class="cv-embed" title="Nathan Rawiri CV"></iframe>
     </section>
 
@@ -210,9 +276,15 @@
                 <h3>UQ Space Rocket Engineering</h3>
                 <p>Developed rockets for Extra-curricular university competitions. Finished 1st place for my 2025 rocket.</p>
                 <div class="gallery">
-                    <img src="images/all_rockets.png" alt="UQ Space 1">
-                    <img src="images/rocket_launch.png" alt="UQ Space 2">
-                    <img src="images/hazmat.PNG" alt="UQ Space 3">
+                    <input type="checkbox" id="rocket1">
+                    <label for="rocket1"><img src="images/all_rockets.png" alt="UQ Space 1"></label>
+                    <div class="lightbox"><label for="rocket1"><img src="images/all_rockets.png" alt="UQ Space 1"></label></div>
+                    <input type="checkbox" id="rocket2">
+                    <label for="rocket2"><img src="images/rocket_launch.png" alt="UQ Space 2"></label>
+                    <div class="lightbox"><label for="rocket2"><img src="images/rocket_launch.png" alt="UQ Space 2"></label></div>
+                    <input type="checkbox" id="rocket3">
+                    <label for="rocket3"><img src="images/hazmat.PNG" alt="UQ Space 3"></label>
+                    <div class="lightbox"><label for="rocket3"><img src="images/hazmat.PNG" alt="UQ Space 3"></label></div>
                 </div>
                 <a href="#" target="_blank">View Project Details</a>
             </div>
@@ -220,9 +292,15 @@
                 <h3>Composite Manufacturing</h3>
                 <p>Build composite airframes. Laying up sheets of fibreglass and epoxy. Vacuum bagging.</p>
                 <div class="gallery">
-                    <img src="images/nosecone_mould.png" alt="UQ Space 1">
-                    <img src="images/nosecone_fincan.png" alt="UQ Space 2">
-                    <img src="images/vac_bag.png" alt="UQ Space 3">
+                    <input type="checkbox" id="composite1">
+                    <label for="composite1"><img src="images/nosecone_mould.png" alt="UQ Space 1"></label>
+                    <div class="lightbox"><label for="composite1"><img src="images/nosecone_mould.png" alt="UQ Space 1"></label></div>
+                    <input type="checkbox" id="composite2">
+                    <label for="composite2"><img src="images/nosecone_fincan.png" alt="UQ Space 2"></label>
+                    <div class="lightbox"><label for="composite2"><img src="images/nosecone_fincan.png" alt="UQ Space 2"></label></div>
+                    <input type="checkbox" id="composite3">
+                    <label for="composite3"><img src="images/vac_bag.png" alt="UQ Space 3"></label>
+                    <div class="lightbox"><label for="composite3"><img src="images/vac_bag.png" alt="UQ Space 3"></label></div>
                 </div>
                 <a href="#" target="_blank">View Project Details</a>
             </div>
@@ -230,9 +308,15 @@
                 <h3>Railway Signalling Project Engineer</h3>
                 <p>Managed Major Resignalling Project with Siemens Mobility</p>
                 <div class="gallery">
-                    <img src="images/office.png" alt="Railway Signalling 1">
-                    <img src="images/tracks.png" alt="Railway Signalling 2">
-                    <img src="images/handsketch.png" alt="Railway Signalling 3">
+                    <input type="checkbox" id="railway1">
+                    <label for="railway1"><img src="images/office.png" alt="Railway Signalling 1"></label>
+                    <div class="lightbox"><label for="railway1"><img src="images/office.png" alt="Railway Signalling 1"></label></div>
+                    <input type="checkbox" id="railway2">
+                    <label for="railway2"><img src="images/tracks.png" alt="Railway Signalling 2"></label>
+                    <div class="lightbox"><label for="railway2"><img src="images/tracks.png" alt="Railway Signalling 2"></label></div>
+                    <input type="checkbox" id="railway3">
+                    <label for="railway3"><img src="images/handsketch.png" alt="Railway Signalling 3"></label>
+                    <div class="lightbox"><label for="railway3"><img src="images/handsketch.png" alt="Railway Signalling 3"></label></div>
                 </div>
                 <a href="#" target="_blank">View Project Details</a>
             </div>
@@ -240,9 +324,15 @@
                 <h3>Metallic Manufacturing and Design of vehicles</h3>
                 <p>Built small tractor, and rover. Excellent manufacturer on lathe and mill. Manufactured Bearing Housings in below image on lathe.</p>
                 <div class="gallery">
-                    <img src="images/tractor_coloured.png" alt="Metal Works 1">
-                    <img src="images/gearbox.png" alt="Metal Works 2">
-                    <img src="images/bearing_housing.png" alt="Metal Works 3">
+                    <input type="checkbox" id="metal1">
+                    <label for="metal1"><img src="images/tractor_coloured.png" alt="Metal Works 1"></label>
+                    <div class="lightbox"><label for="metal1"><img src="images/tractor_coloured.png" alt="Metal Works 1"></label></div>
+                    <input type="checkbox" id="metal2">
+                    <label for="metal2"><img src="images/gearbox.png" alt="Metal Works 2"></label>
+                    <div class="lightbox"><label for="metal2"><img src="images/gearbox.png" alt="Metal Works 2"></label></div>
+                    <input type="checkbox" id="metal3">
+                    <label for="metal3"><img src="images/bearing_housing.png" alt="Metal Works 3"></label>
+                    <div class="lightbox"><label for="metal3"><img src="images/bearing_housing.png" alt="Metal Works 3"></label></div>
                 </div>
                 <a href="#" target="_blank">View Project Details</a>
             </div>
