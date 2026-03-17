@@ -429,17 +429,7 @@
       padding: 0 1.8rem 1.8rem;
     }
 
-    .gallery-item { position: relative; overflow: hidden; border-radius: 4px; aspect-ratio: 1; }
-
-    .gallery-item input[type="checkbox"] { display: none; }
-
-    .gallery-item label {
-      display: block;
-      width: 100%;
-      height: 100%;
-      cursor: pointer;
-      overflow: hidden;
-    }
+    .gallery-item { position: relative; overflow: hidden; border-radius: 4px; aspect-ratio: 1; cursor: pointer; }
 
     .gallery-thumb {
       width: 100%;
@@ -447,6 +437,7 @@
       object-fit: cover;
       transition: transform 0.3s ease, filter 0.3s ease;
       filter: brightness(0.85) saturate(0.9);
+      display: block;
     }
 
     .gallery-item:hover .gallery-thumb {
@@ -455,43 +446,56 @@
     }
 
     /* Lightbox */
-    .lightbox {
+    #lightbox-overlay {
       display: none;
       position: fixed;
       inset: 0;
       background: rgba(4,8,18,0.95);
-      z-index: 1000;
+      z-index: 9999;
       justify-content: center;
       align-items: center;
       padding: 2rem;
       backdrop-filter: blur(8px);
     }
 
-    .gallery-item input[type="checkbox"]:checked ~ .lightbox { display: flex; }
+    #lightbox-overlay.open { display: flex; }
 
-    .lightbox img {
+    #lightbox-overlay img {
       max-height: 88vh;
       max-width: 90vw;
       object-fit: contain;
       border-radius: 6px;
       box-shadow: 0 0 80px rgba(0,0,0,0.8);
+      display: block;
     }
 
-    .lightbox-close {
-      position: absolute;
-      top: 1.5rem;
-      right: 2rem;
+    #lightbox-close {
+      position: fixed;
+      top: 1.2rem;
+      right: 1.5rem;
+      width: 2.4rem;
+      height: 2.4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(15,30,51,0.9);
+      border: 1px solid var(--border);
+      border-radius: 4px;
       color: var(--grey);
-      font-size: 2rem;
+      font-size: 1.2rem;
       cursor: pointer;
-      text-decoration: none;
       line-height: 1;
-      transition: color 0.2s;
+      transition: color 0.2s, background 0.2s, border-color 0.2s;
       font-family: 'IBM Plex Sans', sans-serif;
       font-weight: 300;
+      z-index: 10000;
     }
 
-    .lightbox-close:hover { color: var(--white); }
+    #lightbox-close:hover {
+      color: var(--white);
+      background: rgba(59,158,255,0.12);
+      border-color: rgba(59,158,255,0.4);
+    }
 
     /* ── EDUCATION BAND ── */
     .education-band {
@@ -782,35 +786,23 @@
           4 years building rockets and rovers with UQ Space. Led the aerostructures team to <strong style="color:var(--white)">1st place at AURC 2025</strong> (5,000ft category) and served as Deputy Project Lead for 2nd place at the Australian Rover Challenge 2025 across a 40-person team. Concurrent development across 5,000ft, 10,000ft, and 30,000ft rocket programmes. Also manufactured the original UQ Space rover chassis — still operational 5+ years later.
         </p>
         <div class="gallery">
-          <div class="gallery-item">
-            <input type="checkbox" id="r1">
-            <label for="r1"><img class="gallery-thumb" src="images/all_rockets.png" alt="All Rockets"></label>
-            <div class="lightbox"><label for="r1" class="lightbox-close">✕</label><img src="images/all_rockets.png" alt="All Rockets"></div>
+          <div class="gallery-item" data-src="images/all_rockets.png" data-alt="All Rockets">
+            <img class="gallery-thumb" src="images/all_rockets.png" alt="All Rockets">
           </div>
-          <div class="gallery-item">
-            <input type="checkbox" id="r2">
-            <label for="r2"><img class="gallery-thumb" src="images/rocket_launch.png" alt="Rocket Launch"></label>
-            <div class="lightbox"><label for="r2" class="lightbox-close">✕</label><img src="images/rocket_launch.png" alt="Rocket Launch"></div>
+          <div class="gallery-item" data-src="images/rocket_launch.png" data-alt="Rocket Launch">
+            <img class="gallery-thumb" src="images/rocket_launch.png" alt="Rocket Launch">
           </div>
-          <div class="gallery-item">
-            <input type="checkbox" id="r3">
-            <label for="r3"><img class="gallery-thumb" src="images/hazmat.PNG" alt="Launch Day"></label>
-            <div class="lightbox"><label for="r3" class="lightbox-close">✕</label><img src="images/hazmat.PNG" alt="Launch Day"></div>
+          <div class="gallery-item" data-src="images/hazmat.PNG" data-alt="Launch Day">
+            <img class="gallery-thumb" src="images/hazmat.PNG" alt="Launch Day">
           </div>
-          <div class="gallery-item">
-            <input type="checkbox" id="r4">
-            <label for="r4"><img class="gallery-thumb" src="images/artemis.png" alt="Artemis Rocket"></label>
-            <div class="lightbox"><label for="r4" class="lightbox-close">✕</label><img src="images/artemis.png" alt="Artemis Rocket"></div>
+          <div class="gallery-item" data-src="images/artemis.png" data-alt="Artemis Rocket">
+            <img class="gallery-thumb" src="images/artemis.png" alt="Artemis Rocket">
           </div>
-          <div class="gallery-item">
-            <input type="checkbox" id="r5">
-            <label for="r5"><img class="gallery-thumb" src="images/vesta.png" alt="Vesta Rocket"></label>
-            <div class="lightbox"><label for="r5" class="lightbox-close">✕</label><img src="images/vesta.png" alt="Vesta Rocket"></div>
+          <div class="gallery-item" data-src="images/vesta.png" data-alt="Vesta Rocket">
+            <img class="gallery-thumb" src="images/vesta.png" alt="Vesta Rocket">
           </div>
-          <div class="gallery-item">
-            <input type="checkbox" id="r6">
-            <label for="r6"><img class="gallery-thumb" src="images/rover.png" alt="Rover"></label>
-            <div class="lightbox"><label for="r6" class="lightbox-close">✕</label><img src="images/rover.png" alt="Rover"></div>
+          <div class="gallery-item" data-src="images/rover.png" data-alt="Rover">
+            <img class="gallery-thumb" src="images/rover.png" alt="Rover">
           </div>
         </div>
       </div>
@@ -825,20 +817,14 @@
           Fiberglass/epoxy composite airframes built using vacuum bagging over precision mandrels and two-part female moulds — including a seamless nosecone process I developed for a near-perfect surface finish. Concurrent development across 5,000ft, 10,000ft, and 30,000ft rocket programmes at UQ Space.
         </p>
         <div class="gallery">
-          <div class="gallery-item">
-            <input type="checkbox" id="c1">
-            <label for="c1"><img class="gallery-thumb" src="images/nosecone_mould.png" alt="Nosecone Mould"></label>
-            <div class="lightbox"><label for="c1" class="lightbox-close">✕</label><img src="images/nosecone_mould.png" alt="Nosecone Mould"></div>
+          <div class="gallery-item" data-src="images/nosecone_mould.png" data-alt="Nosecone Mould">
+            <img class="gallery-thumb" src="images/nosecone_mould.png" alt="Nosecone Mould">
           </div>
-          <div class="gallery-item">
-            <input type="checkbox" id="c2">
-            <label for="c2"><img class="gallery-thumb" src="images/nosecone_fincan.png" alt="Nosecone & Fincan"></label>
-            <div class="lightbox"><label for="c2" class="lightbox-close">✕</label><img src="images/nosecone_fincan.png" alt="Nosecone & Fincan"></div>
+          <div class="gallery-item" data-src="images/nosecone_fincan.png" data-alt="Nosecone & Fincan">
+            <img class="gallery-thumb" src="images/nosecone_fincan.png" alt="Nosecone & Fincan">
           </div>
-          <div class="gallery-item">
-            <input type="checkbox" id="c3">
-            <label for="c3"><img class="gallery-thumb" src="images/vac_bag.png" alt="Vacuum Bagging"></label>
-            <div class="lightbox"><label for="c3" class="lightbox-close">✕</label><img src="images/vac_bag.png" alt="Vacuum Bagging"></div>
+          <div class="gallery-item" data-src="images/vac_bag.png" data-alt="Vacuum Bagging">
+            <img class="gallery-thumb" src="images/vac_bag.png" alt="Vacuum Bagging">
           </div>
         </div>
       </div>
@@ -856,20 +842,14 @@
           This machining background extended into a formal role as <strong style="color:var(--white)">Manufacturing Supervisor at UQ Innovate Makerspace</strong> — supervising up to 60 engineering students simultaneously in an advanced industrial facility. Operated and maintained 7+ types of industrial equipment (lathe, mill, press brake, laser cutter, water jet cutter, band saws, grinders), provided hands-on technical support for aluminium/steel fabrication, precision machining, and composite work, and guided students through design-for-manufacturability challenges on complex assemblies.
         </p>
         <div class="gallery">
-          <div class="gallery-item">
-            <input type="checkbox" id="m1">
-            <label for="m1"><img class="gallery-thumb" src="images/tractor_coloured.png" alt="Gearbox Tractor"></label>
-            <div class="lightbox"><label for="m1" class="lightbox-close">✕</label><img src="images/tractor_coloured.png" alt="Gearbox Tractor"></div>
+          <div class="gallery-item" data-src="images/tractor_coloured.png" data-alt="Gearbox Tractor">
+            <img class="gallery-thumb" src="images/tractor_coloured.png" alt="Gearbox Tractor">
           </div>
-          <div class="gallery-item">
-            <input type="checkbox" id="m2">
-            <label for="m2"><img class="gallery-thumb" src="images/gearbox.png" alt="Gearbox"></label>
-            <div class="lightbox"><label for="m2" class="lightbox-close">✕</label><img src="images/gearbox.png" alt="Gearbox"></div>
+          <div class="gallery-item" data-src="images/gearbox.png" data-alt="Gearbox">
+            <img class="gallery-thumb" src="images/gearbox.png" alt="Gearbox">
           </div>
-          <div class="gallery-item">
-            <input type="checkbox" id="m3">
-            <label for="m3"><img class="gallery-thumb" src="images/bearing_housing.png" alt="Bearing Housing"></label>
-            <div class="lightbox"><label for="m3" class="lightbox-close">✕</label><img src="images/bearing_housing.png" alt="Bearing Housing"></div>
+          <div class="gallery-item" data-src="images/bearing_housing.png" data-alt="Bearing Housing">
+            <img class="gallery-thumb" src="images/bearing_housing.png" alt="Bearing Housing">
           </div>
         </div>
       </div>
@@ -884,20 +864,14 @@
           9 months as Project Engineer on the Wellington rail network resignalling programme — replacing legacy mechanical interlocking with Westrace MkII and ETCS across the entire network. Managed the BOM end-to-end, chaired procurement meetings, generated installation requirements for 168 axle counters, and led the sole-effort close-out of a long-stalled post-commissioned project (T2UH) that multiple engineers before me had been unable to resolve — achieving full client-signed certification before the end of my placement.
         </p>
         <div class="gallery">
-          <div class="gallery-item">
-            <input type="checkbox" id="s1">
-            <label for="s1"><img class="gallery-thumb" src="images/office.png" alt="Siemens Office"></label>
-            <div class="lightbox"><label for="s1" class="lightbox-close">✕</label><img src="images/office.png" alt="Siemens Office"></div>
+          <div class="gallery-item" data-src="images/office.png" data-alt="Siemens Office">
+            <img class="gallery-thumb" src="images/office.png" alt="Siemens Office">
           </div>
-          <div class="gallery-item">
-            <input type="checkbox" id="s2">
-            <label for="s2"><img class="gallery-thumb" src="images/tracks.png" alt="Rail Network"></label>
-            <div class="lightbox"><label for="s2" class="lightbox-close">✕</label><img src="images/tracks.png" alt="Rail Network"></div>
+          <div class="gallery-item" data-src="images/tracks.png" data-alt="Rail Network">
+            <img class="gallery-thumb" src="images/tracks.png" alt="Rail Network">
           </div>
-          <div class="gallery-item">
-            <input type="checkbox" id="s3">
-            <label for="s3"><img class="gallery-thumb" src="images/handsketch.png" alt="Hand Sketch Drawing"></label>
-            <div class="lightbox"><label for="s3" class="lightbox-close">✕</label><img src="images/handsketch.png" alt="Hand Sketch Drawing"></div>
+          <div class="gallery-item" data-src="images/handsketch.png" data-alt="Hand Sketch Drawing">
+            <img class="gallery-thumb" src="images/handsketch.png" alt="Hand Sketch Drawing">
           </div>
         </div>
       </div>
@@ -974,6 +948,12 @@
     </div>
   </section>
 
+  <!-- GLOBAL LIGHTBOX -->
+  <div id="lightbox-overlay">
+    <button id="lightbox-close" aria-label="Close">✕</button>
+    <img id="lightbox-img" src="" alt="">
+  </div>
+
   <footer>
     <p>© 2026 Nathan Rawiri</p>
     <p>Wellington, New Zealand · rawirinathan@gmail.com</p>
@@ -992,15 +972,32 @@
     }, { threshold: 0.12 });
     reveals.forEach(el => observer.observe(el));
 
-    // Close lightbox on background click
-    document.querySelectorAll('.lightbox').forEach(lb => {
-      lb.addEventListener('click', (e) => {
-        if (e.target === lb) {
-          const checkbox = lb.closest('.gallery-item').querySelector('input[type="checkbox"]');
-          if (checkbox) checkbox.checked = false;
-        }
+    // Lightbox
+    const overlay = document.getElementById('lightbox-overlay');
+    const lbImg   = document.getElementById('lightbox-img');
+    const lbClose = document.getElementById('lightbox-close');
+
+    function openLightbox(src, alt) {
+      lbImg.src = src;
+      lbImg.alt = alt || '';
+      overlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      overlay.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('.gallery-item').forEach(item => {
+      item.addEventListener('click', () => {
+        openLightbox(item.dataset.src, item.dataset.alt);
       });
     });
+
+    lbClose.addEventListener('click', closeLightbox);
+    overlay.addEventListener('click', (e) => { if (e.target === overlay) closeLightbox(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeLightbox(); });
   </script>
 </body>
 </html>
